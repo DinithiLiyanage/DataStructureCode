@@ -10,6 +10,7 @@ class Stack{
 		Stack(int size);
 		int isEmpty();
 		int isFull();
+		int getTop();
 		void Display();
 		void Push(int value);
 		int Pop();
@@ -21,7 +22,7 @@ Stack::Stack(int sizeIn){
 	int arr[size];
 }
 int Stack::isEmpty(){
-	if(top == -1){
+	if(this->top == -1){
 		return 1;
 	}
 	else{
@@ -38,16 +39,16 @@ int Stack::isFull(){
 }
 void Stack::Push(int value){
 	top += 1;
-	if(top >= size){
+	if(this -> isFull()){
 		cout<<"Stack overflow"<<endl;
 	}
 	else{
 		arr[top] = value;
-		cout<<top<<endl;
+		//cout<<top<<endl;
 	}
 }
 int Stack::Pop(){
-	if(top == -1){
+	if(this -> isEmpty()){
 		cout<<"Stack underflow"<<endl;
 		return 0;
 	}
@@ -61,9 +62,8 @@ int Stack::stackTop(){
 }
 
 void Stack::Display(){
-	while(!(this->isEmpty())){
-		cout<<arr[top]<<endl;
-		top -= 1;
+	for(int i=top; i>=0; i--){
+		cout<<arr[i]<<endl;
 	}
 }
 
@@ -77,18 +77,26 @@ int main(){
 	s.Push(5);
 	s.Push(11);
 	s.Push(12);
+	
+	cout<<"Elements in the stack: "<<endl;
 	s.Display();
 	
+	cout<<"Elements popped out: "<<endl;
 	cout<<s.Pop()<<endl; 
 	cout<<s.Pop()<<endl; 
 	cout<<s.Pop()<<endl;
 	cout<<s.Pop()<<endl;
+	
+	cout<<"Stack after popping out some elements: "<<endl;
 	s.Display();
-	s.Push(8);
-	s.Push(10);
-	s.Push(5);
+	
+	s.Push(1);
 	s.Push(11);
-	s.Push(12);
+	s.Push(51);
+	s.Push(111);
+	s.Push(121);
+	
+	cout<<"Elements in stack after new insertion: "<<endl;
 	s.Display();
 	return 0;
 }
