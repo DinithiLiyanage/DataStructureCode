@@ -1,0 +1,94 @@
+#include<iostream>
+using namespace std;
+
+class Stack{
+	int top;
+	int size;
+	int arr[];
+	
+	public:
+		Stack(int size);
+		int isEmpty();
+		int isFull();
+		void Display();
+		void Push(int value);
+		int Pop();
+		int stackTop();
+};
+Stack::Stack(int sizeIn){
+	size = sizeIn;
+	top = -1;
+	int arr[size];
+}
+int Stack::isEmpty(){
+	if(top == -1){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+int Stack::isFull(){
+	if(top >= size){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+void Stack::Push(int value){
+	top += 1;
+	if(top >= size){
+		cout<<"Stack overflow"<<endl;
+	}
+	else{
+		arr[top] = value;
+		cout<<top<<endl;
+	}
+}
+int Stack::Pop(){
+	if(top == -1){
+		cout<<"Stack underflow"<<endl;
+		return 0;
+	}
+	else{
+		top = top -1;
+		return arr[top+1];
+	}
+}
+int Stack::stackTop(){
+	return arr[top];
+}
+
+void Stack::Display(){
+	while(!(this->isEmpty())){
+		cout<<arr[top]<<endl;
+		top -= 1;
+	}
+}
+
+int main(){
+	int size;
+	cin>> size;
+	Stack s(size);
+	
+	s.Push(8);
+	s.Push(10);
+	s.Push(5);
+	s.Push(11);
+	s.Push(12);
+	s.Display();
+	
+	cout<<s.Pop()<<endl; 
+	cout<<s.Pop()<<endl; 
+	cout<<s.Pop()<<endl;
+	cout<<s.Pop()<<endl;
+	s.Display();
+	s.Push(8);
+	s.Push(10);
+	s.Push(5);
+	s.Push(11);
+	s.Push(12);
+	s.Display();
+	return 0;
+}
