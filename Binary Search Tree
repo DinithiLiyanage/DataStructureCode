@@ -8,15 +8,9 @@ struct node {
 
 // Inorder traversal
 void traverseInOrder(struct node *root) {
-	if(root -> left == NULL){
-		return;
-	}
-	else if(root->right == NULL){
-		return;
-	}
-	else{
+	if(root != NULL){
 		traverseInOrder(root->left);
-		cout<<root->key;
+		cout<<root->key<<" ";
 		traverseInOrder(root->right);
 	}
 }
@@ -60,14 +54,17 @@ struct node *FindMax(struct node *root){
 
 
 // Deleting a node
-struct node *deleteNode(struct node *root, int key) {
-	if(root == NULL){
+struct node *deleteNode(struct node *root, int key){
+	if(root == NULL)
+	{
 		return root;
 	}
-	else if(root -> key < key){
+	else if(root -> key < key)
+	{
 		root-> right = deleteNode(root->right, key);
 	}
-	else if(root -> key > key){
+	else if(root -> key > key)
+	{
 		root-> left = deleteNode(root->left, key);
 	}
 	else{
@@ -89,14 +86,15 @@ struct node *deleteNode(struct node *root, int key) {
 			return root;
 		}
 		//Node has 2 children
-		else{
-		node* temp = FindMax(root->right);
-		root->key = temp->key;
-		temp->key = key;
-		root->right =  deleteNode(root->right, key);
-		return root;
+		else
+		{
+			node* temp = FindMax(root->right);
+			root->key = temp->key;
+			temp->key = key;
+			root->right =  deleteNode(root->right, key);
 		}
 	}
+	return root;
 }
 
 // Driver code
